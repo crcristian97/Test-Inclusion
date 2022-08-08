@@ -7,11 +7,14 @@ import Characters from './components/Characters';
 function App() {
 
   const categories = ["accounts", "assets", "customers", "datapoints", "devices", "documents", "forms", "invites", "media", "messages", "namespaces", "orders" , "patients", "relationships", "rules", "templates", "users", "workflows"];
+  
   const [characters, setCharacter] = useState( []);
   
-  
+
+  //Call the API with 
   const getApi = async () => {
     const charactersProve = [];
+    //for to replace in the URL the category
     for (let category of categories) {
       var response;  
         try{      
@@ -20,7 +23,7 @@ function App() {
         catch(e){
         response = {ok : false};
       }  
-
+        
         if (response.ok) {
           const data = await response.json();
           charactersProve.push({category: category, data: data});
@@ -32,11 +35,13 @@ function App() {
   setCharacter(charactersProve);
 };
 
+
+  //Here change the time if you want to pass 10second
   useEffect(() => {
     setInterval(() =>{
       getApi();
     }, 15000);   
-  }, []);
+  });
 
   return (
     <>  
