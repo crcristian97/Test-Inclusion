@@ -41,7 +41,7 @@ function App() {
     setInterval(() =>{
       getApi();
     }, 15000);   
-  });
+  },);
 
   return (
     <>  
